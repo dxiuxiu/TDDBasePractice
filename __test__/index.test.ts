@@ -1,68 +1,48 @@
-// * 创建 StringCalculator 类
-// * 创建 add 方法
-// * '' => 0
-// * '1' => 1 '2' => 2
-// * 两个数字，逗号分割 '1,2' => 3 '10,20' => 30
-// * 两个数字，换行符分割 '1\n2' => 3
-// * 以任意方式分割字符串 '1\n2,3\n4' => 10
-// * 不允许使用负数 '-1,2,-3' => 'negatives not allowed: -1,-3'
 
+import { IFindSubString, FindSubString } from '../src/FindSubString'
 
-import {IStringCalculator, StringCalculator} from '../src/StringCalculator'
-
-describe('测试 stringCalculator 类', () => {
-    let instance: IStringCalculator
+describe('测试 FindSubString 类', () => {
+    let instance: IFindSubString
     beforeEach(() => {
-        instance = new StringCalculator()
+        instance = new FindSubString()
         return instance
     })
-    test('should work', () => {
-        expect(1).toBe(1)
+    test('new FindSubString() should return a instance', () => {
+        expect(FindSubString).toBeDefined()
     })
-    test('new StringCalculator() should return a instance', () => {
-        expect(StringCalculator).toBeDefined()
+    test('search() shoule defined', () => {
+        expect(instance.search('')).toBeDefined()
     })
-    test('StringCalculator() should have add method', () => {
-        expect(instance.add('')).toBeDefined()
+    test(`given '' should return {num : 0, index : []}`, () => {
+        expect(instance.search('')).toStrictEqual({ num: 0, indexs: [] })
     })
-    test(`given '' should return 0`, () => {
-        expect(instance.add('')).toBe(0)
+    test(`give 'a' should return {num : 0, index : []} `, () => {
+        expect(instance.search('a')).toStrictEqual({ num: 0, indexs: [] })
+    })
+    test(`give 'ab' should return {num : 1, index : [0]} `, () => {
+        expect(instance.search('ab')).toStrictEqual({ num: 1, indexs: [0] })
+    })
+    test(`give 'aba' should return {num : 1, index : [0]} `, () => {
+        expect(instance.search('aba')).toStrictEqual({ num: 1, indexs: [0] })
+    })
+    test(`give 'abab' should return {num : 1, index : [0,2]} `, () => {
+        expect(instance.search('abab')).toStrictEqual({ num: 2, indexs: [0, 2] })
+    })
+    test(`give 'ababababab' should return {num : 1, index : [0, 2,4,6,8]} `, () => {
+        expect(instance.search('ababababab')).toStrictEqual({ num: 5, indexs: [0,2,4,6,8]})
+    })
+    test(`give 'aaabaa' should return {num : 1, index : [2]} `, () => {
+        expect(instance.search('aaabaa')).toStrictEqual({ num: 1, indexs: [2]})
+    })
+    test(`give 'aaabeeebbaddabddab' should return {num : 2, index : [2,12,16]} `, () => {
+        expect(instance.search('aaabeeebbaddabddab')).toStrictEqual({ num: 3, indexs: [2,12,16]})
+    })
+    test(`give 'hcvhxnm' should return {num : 0, index : []} `, () => {
+        expect(instance.search('hcvhxnm')).toStrictEqual({ num: 0, indexs: []})
     })
 
-    const testTable = [['1', 1], ['2', 2]]
 
-    test.each(testTable)('given %s, should get %d', (input, expected) => {
-        expect(instance.add(input as string)).toBe(expected)
-    })
-    test(`given 1 should return 1`, () => {
-        expect(instance.add('1')).toBe(1)
-    })
 
-    test(`given 2 should return 2`, () => {
-        expect(instance.add('2')).toBe(2)
-    })
-    test(`given '1,2' should return 3`, () => {
-        expect(instance.add('1,2')).toBe(3)
-    })
-    test(`given '10,20' should return 30`, () => {
-        expect(instance.add('10,20')).toBe(30)
-    })
-    test(`given '10,20' should return 30`, () => {
-        expect(instance.add('10,20')).not.toBe(40)
-    })
-    test(`given '1\n2' should return 3`, () => {
-        expect(instance.add('1\n2')).toBe(3)
-    })
-    test(`given '1\n2,3\n4' should return 10`, () => {
-        expect(instance.add('1\n2,3\n4')).toBe(10)
-    })
-    test(`given '1,2,3\n40' should return 10`, () => {
-        expect(instance.add('1,2,3\n40')).toBe(46)
-    })
-    test(`given '1,2,3\n40' should return 10`, () => {
-        expect(instance.add('1,2,3\n40')).not.toBe(123)
-    })
-    test(`given '-1,2,-3' should throw error`, () => {
-        expect(() => instance.add('-1,2,-3')).toThrowError('negatives are not allowed')
-    })
+    // 
 })
+
