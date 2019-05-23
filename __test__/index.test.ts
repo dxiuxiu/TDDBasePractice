@@ -40,5 +40,9 @@ describe('测试 FindSubString 类', () => {
     test(`give 'hcvhxnm' should return {num : 0, index : []} `, () => {
         expect(instance.search('hcvhxnm')).toStrictEqual({ num: 0, indexs: []})
     })
+
+    test(`give 'hcvhxnm' should return {num : 6, index : [0,3, 6,9,12,15 ]} `, () => {
+        expect(instance.search('abcabcabcabcabcabda')).toStrictEqual({ num: 6, indexs: [0,3, 6,9,12,15 ]})
+    })
 })
 
