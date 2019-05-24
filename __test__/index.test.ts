@@ -1,14 +1,9 @@
 
-// import {IFindSubString, FindSubString} from '../src/FindSubString'
+import {IFizzBuzz, FizzBuzz} from '../src/index'
 
-// describe('测试 FindSubString 类', () => {
-//     let instance: IFindSubString
-//     beforeEach(() => {
-//         instance = new FindSubString()
-//         return instance
-//     })
-//     test('new FindSubString() should return a instance', () => {
-//         expect(FindSubString).toBeDefined()
-//     })
+describe('测试 FizzBuzz 类', () => {
+    test('FizzBuzz should be defined', () => {
+        expect(FizzBuzz).toBeDefined()
+    })
     
-// })
+})
