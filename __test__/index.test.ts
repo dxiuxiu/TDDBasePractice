@@ -15,6 +15,9 @@ describe('测试 FizzBuzz 类', () => {
     test('fizzBuzz should be defined', () => {
         expect(fizzBuzz).toBeDefined()
     })
+    test('fizzBuzz.getFizzBuzzResult() should be defined', () => {
+        expect(fizzBuzz.getFizzBuzzResult(0)).toBeDefined()
+    })
 
     
 })
